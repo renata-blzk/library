@@ -1,0 +1,5 @@
+td, th {
+    width: 5em;
+    margin: auto;
+    border: 1px solid black;
+}
