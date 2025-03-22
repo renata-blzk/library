@@ -15,9 +15,9 @@ Book.prototype.addBookToLibrary = function() {
         author: this.author,
         pages: this.pages,
     }
+    newBook.id = crypto.randomUUID();
     
     myLibrary.push(newBook);
-    console.log(myLibrary);
 }
 
 const book1 = new Book('Misery', 'Stephen King', '200');
