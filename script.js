@@ -7,7 +7,12 @@ function Book(title, author, pages) {
 }
 
 function addBookToLibrary() {
-    let newBook = (book.title + book.author + book.pages);
+    let newBook = {
+        title: book.title,
+        author: book.author,
+        pages: book.pages,
+    }
+    
     myLibrary.push(newBook);
     console.log(myLibrary);
 }
