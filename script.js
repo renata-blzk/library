@@ -37,9 +37,22 @@ myLibrary.forEach(book => {
     Object.entries(book).forEach(value => {
         let td = document.createElement('td');
         td.innerText = value;
-        tr.appendChild(td);
+        tr.appendChild(td); 
     });
     table.appendChild(tr);
+});
+
+const addNewBookBtn = document.querySelector('.addNewBook');
+const formModal = document.querySelector('.formModal');
+const outputBox = document.querySelector('output');
+const submitBtn = formModal.querySelector('.submitBtn');
+
+addNewBookBtn.addEventListener('click', () => {
+    formModal.showModal();
+});
+
+submitBtn.addEventListener('click', (event) => {
+    event.preventDefault();
 });
 
 
