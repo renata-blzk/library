@@ -30,6 +30,7 @@ document.querySelector('.mainForm').addEventListener('submit', function(event) {
 
     // DISPLAY BOOK IN A TABLE WITH NEW TABLE ROW
     let tr = document.createElement('tr');
+   
     Object.entries(book).forEach(value => {
         let td = document.createElement('td');
         td.innerText = value;
