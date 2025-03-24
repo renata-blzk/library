@@ -24,16 +24,14 @@ document.querySelector('.mainForm').addEventListener('submit', function(event) {
     book.id = crypto.randomUUID();
         
     myLibrary.push(book);
-    
-    myLibrary.forEach(book => {
-        let tr = document.createElement('tr');
-        Object.entries(book).forEach(value => {
-            let td = document.createElement('td');
-            td.innerText = value;
-            tr.appendChild(td); 
-        });
-        table.appendChild(tr);
+
+    let tr = document.createElement('tr');
+    Object.entries(book).forEach(value => {
+        let td = document.createElement('td');
+        td.innerText = value;
+        tr.appendChild(td); 
     });
+    table.appendChild(tr);
 
     this.reset();
     formModal.close();
