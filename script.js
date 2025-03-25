@@ -1,6 +1,5 @@
 const myLibrary = [];
 
-const table = document.querySelector('#tableID');
 const addNewBookBtn = document.querySelector('.addNewBook');
 const formModal = document.querySelector('.formModal');
 const outputBox = document.querySelector('output');
@@ -29,14 +28,20 @@ document.querySelector('.mainForm').addEventListener('submit', function(event) {
     myLibrary.push(book);
 
     // DISPLAY BOOK IN A TABLE WITH NEW TABLE ROW
-    let tr = document.createElement('tr');
+
+    ///// this one works, but also includes ID /////
+    /*let tr = document.createElement('tr');
    
     Object.entries(book).forEach(value => {
         let td = document.createElement('td');
         td.innerText = value;
         tr.appendChild(td); 
     });
-    table.appendChild(tr);
+    table.appendChild(tr);*/
+
+    ///// this one uses innerHTML - not the best option /////
+    const table = document.querySelector('#tableID').innerHTML = myLibrary.map(book => 
+        `<tr><td>Title: ${book.title}</td><td>Author: ${book.author}</td><td>Pages: ${book.pages}</td><td>Status: ${book.status}</td></tr>`).join('');
 
     // RESET AND CLOSE THE FORM
     this.reset();
