@@ -4,6 +4,7 @@ const addNewBookBtn = document.querySelector('.addNewBook');
 const formModal = document.querySelector('.formModal');
 const outputBox = document.querySelector('output');
 const submitBtn = formModal.querySelector('.submitBtn');
+const table = document.querySelector('#tableID');
 
 // ADD FEW BOOKS FOR DISPLAY
 function Book(title, author, pages, status) {
@@ -26,13 +27,31 @@ Book.prototype.addBookToLibrary = function() {
     newBook.id = crypto.randomUUID();
 
     myLibrary.push(newBook);
-    document.querySelector('#tableID').innerHTML = myLibrary.map(book => 
-        `<tr><td>Title: ${book.title}</td><td>Author: ${book.author}</td><td>Pages: ${book.pages}</td><td>Status: ${book.status}</td></tr>`).join('');
+    
+    let tr = document.createElement('tr');
+   
+    let titleTd = document.createElement('td');
+    titleTd.innerText = `Title: ${newBook.title}`;
+    tr.appendChild(titleTd); 
+
+    let authorTd = document.createElement('td');
+    authorTd.innerText = `Author: ${newBook.author}`;
+    tr.appendChild(authorTd); 
+
+    let pagesTd = document.createElement('td');
+    pagesTd.innerText = `Pages: ${newBook.pages}`;
+    tr.appendChild(pagesTd); 
+
+    let statusTd = document.createElement('td');
+    statusTd.innerText = `Status: ${newBook.status}`;
+    tr.appendChild(statusTd); 
+    
+    table.appendChild(tr);
 }
 
-const book1 = new Book('Misery', 'Stephen King', '200', 'read');
-const book2 = new Book('The Stand', 'Stephen King', '300', 'unread');
-const book3 = new Book('Lord of the Rigs', 'J.R.R. Tolkien', '500', 'read');
+const book1 = new Book('Misery', 'Stephen King', '200', 'Read');
+const book2 = new Book('The Stand', 'Stephen King', '300', 'Unread');
+const book3 = new Book('Lord of the Rings', 'J.R.R. Tolkien', '500', 'Read');
 
 book1.addBookToLibrary();
 book2.addBookToLibrary();
@@ -62,19 +81,25 @@ document.querySelector('.mainForm').addEventListener('submit', function(event) {
 
     // DISPLAY BOOK IN A TABLE WITH NEW TABLE ROW
 
-    ///// this one works, but also includes ID /////
-    /*let tr = document.createElement('tr');
+    let tr = document.createElement('tr');
    
-    Object.entries(book).forEach(value => {
-        let td = document.createElement('td');
-        td.innerText = value;
-        tr.appendChild(td); 
-    });
-    table.appendChild(tr);*/
+    let titleTd = document.createElement('td');
+    titleTd.innerText = `Title: ${book.title}`;
+    tr.appendChild(titleTd); 
 
-    ///// this one uses innerHTML - not the best option /////
-    document.querySelector('#tableID').innerHTML = myLibrary.map(book => 
-        `<tr><td>Title: ${book.title}</td><td>Author: ${book.author}</td><td>Pages: ${book.pages}</td><td>Status: ${book.status}</td></tr>`).join('');
+    let authorTd = document.createElement('td');
+    authorTd.innerText = `Author: ${book.author}`;
+    tr.appendChild(authorTd); 
+
+    let pagesTd = document.createElement('td');
+    pagesTd.innerText = `Pages: ${book.pages}`;
+    tr.appendChild(pagesTd); 
+
+    let statusTd = document.createElement('td');
+    statusTd.innerText = `Status: ${book.status}`;
+    tr.appendChild(statusTd); 
+    
+    table.appendChild(tr);
 
     // RESET AND CLOSE THE FORM
     this.reset();
