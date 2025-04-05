@@ -6,7 +6,7 @@ const outputBox = document.querySelector('output');
 const submitBtn = formModal.querySelector('.submitBtn');
 const table = document.querySelector('#tableID');
 
-// ADD FEW BOOKS FOR DISPLAY
+// CREATE OBJECT CONSTRUCTOR FOR BOOKS DISPLAY
 function Book(title, author, pages, status) {
     if (!new.target) {
         throw Error ('use "new" when creating new book');
@@ -23,32 +23,35 @@ Book.prototype.addBookToLibrary = function() {
         author: this.author,
         pages: this.pages,
         status: this.status,
+        id: crypto.randomUUID(),
     }
-    newBook.id = crypto.randomUUID();
+    //newBook.id = crypto.randomUUID();
 
     myLibrary.push(newBook);
     
+    // DISPLAY BOOKS IN A TABLE
     let tr = document.createElement('tr');
    
     let titleTd = document.createElement('td');
-    titleTd.innerText = `Title: ${newBook.title}`;
+    titleTd.innerText = `Title: ${this.title}`;
     tr.appendChild(titleTd); 
 
     let authorTd = document.createElement('td');
-    authorTd.innerText = `Author: ${newBook.author}`;
+    authorTd.innerText = `Author: ${this.author}`;
     tr.appendChild(authorTd); 
 
     let pagesTd = document.createElement('td');
-    pagesTd.innerText = `Pages: ${newBook.pages}`;
+    pagesTd.innerText = `Pages: ${this.pages}`;
     tr.appendChild(pagesTd); 
 
     let statusTd = document.createElement('td');
-    statusTd.innerText = `Status: ${newBook.status}`;
+    statusTd.innerText = `Status: ${this.status}`;
     tr.appendChild(statusTd); 
     
     table.appendChild(tr);
 }
 
+// CREATE FEW BOOKS FOR DISPLAY
 const book1 = new Book('Misery', 'Stephen King', '200', 'Read');
 const book2 = new Book('The Stand', 'Stephen King', '300', 'Unread');
 const book3 = new Book('Lord of the Rings', 'J.R.R. Tolkien', '500', 'Read');
@@ -57,7 +60,7 @@ book1.addBookToLibrary();
 book2.addBookToLibrary();
 book3.addBookToLibrary();
 
-// OPEN TABLE TO ADD NEW BOOK
+// OPEN TABLE IN A MODAL TO ADD NEW BOOK
 addNewBookBtn.addEventListener('click', () => {
     formModal.showModal();
 });
@@ -72,16 +75,15 @@ document.querySelector('.mainForm').addEventListener('submit', function(event) {
     const status = document.getElementById('status').value;
 
     // CREATE BOOK 
-    const book = { title, author, pages, status };
+    const book = new Book (title, author, pages, status);
     
-    book.id = crypto.randomUUID();
+    //book.id = crypto.randomUUID();
         
     // ADD BOOK TO ARRAY
-    myLibrary.push(book);
+    book.addBookToLibrary();
 
     // DISPLAY BOOK IN A TABLE WITH NEW TABLE ROW
-
-    let tr = document.createElement('tr');
+    /*let tr = document.createElement('tr');
    
     let titleTd = document.createElement('td');
     titleTd.innerText = `Title: ${book.title}`;
@@ -99,7 +101,7 @@ document.querySelector('.mainForm').addEventListener('submit', function(event) {
     statusTd.innerText = `Status: ${book.status}`;
     tr.appendChild(statusTd); 
     
-    table.appendChild(tr);
+    table.appendChild(tr);*/
 
     // RESET AND CLOSE THE FORM
     this.reset();
