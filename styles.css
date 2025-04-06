@@ -1,5 +1,27 @@
-td, th {
-    width: 130px;
+body {
+    max-width: 145vh;
+    background-color: rgb(246, 231, 208);
     margin: auto;
+    display: grid;
+    grid
+}
+
+td, th {
     border: 1px solid black;
+}
+
+#tableID {
+    background-color: purple;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, 210px);
+    grid-auto-rows: 1fr;
+}
+
+tr {
+    display: grid;
+    grid-template-rows: repeat(4, 1fr);
+    row-gap: 10px;
+    border: solid 5px rgb(234, 167, 43);
+    margin: 15px;
+    padding: 10px;
 }
