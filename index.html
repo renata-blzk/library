@@ -16,13 +16,13 @@
     <dialog class="formModal">
         <form class="mainForm" action="" method="post">
             <label for="title">Title:</label>
-            <input type="text" name="title" id="title" placeholder="Misery">
+            <input type="text" name="title" id="title" placeholder="Misery" required>
 
             <label for="author">Author:</label>
-            <input type="text" name="author" id="author" placeholder="Stephen King">
+            <input type="text" name="author" id="author" placeholder="Stephen King" required>
 
             <label for="pages">Number of pages:</label>
-            <input type="number" name="pages" id="pages" placeholder="384">
+            <input type="number" name="pages" id="pages" placeholder="384" required min="0">
 
             <select name="status" id="status">
                 <option value="Read">Read</option>
