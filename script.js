@@ -25,7 +25,6 @@ Book.prototype.addBookToLibrary = function() {
         status: this.status,
         id: crypto.randomUUID(),
     }
-    //newBook.id = crypto.randomUUID();
 
     myLibrary.push(newBook);
     
@@ -76,32 +75,9 @@ document.querySelector('.mainForm').addEventListener('submit', function(event) {
 
     // CREATE BOOK 
     const book = new Book (title, author, pages, status);
-    
-    //book.id = crypto.randomUUID();
-        
+            
     // ADD BOOK TO ARRAY
     book.addBookToLibrary();
-
-    // DISPLAY BOOK IN A TABLE WITH NEW TABLE ROW
-    /*let tr = document.createElement('tr');
-   
-    let titleTd = document.createElement('td');
-    titleTd.innerText = `Title: ${book.title}`;
-    tr.appendChild(titleTd); 
-
-    let authorTd = document.createElement('td');
-    authorTd.innerText = `Author: ${book.author}`;
-    tr.appendChild(authorTd); 
-
-    let pagesTd = document.createElement('td');
-    pagesTd.innerText = `Pages: ${book.pages}`;
-    tr.appendChild(pagesTd); 
-
-    let statusTd = document.createElement('td');
-    statusTd.innerText = `Status: ${book.status}`;
-    tr.appendChild(statusTd); 
-    
-    table.appendChild(tr);*/
 
     // RESET AND CLOSE THE FORM
     this.reset();
