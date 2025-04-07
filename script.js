@@ -30,6 +30,7 @@ Book.prototype.addBookToLibrary = function() {
     
     // DISPLAY BOOKS IN A TABLE
     let tr = document.createElement('tr');
+    tr.setAttribute('data-uniqueid', newBook.id);
    
     let titleTd = document.createElement('td');
     titleTd.innerText = `Title: ${this.title}`;
@@ -50,7 +51,7 @@ Book.prototype.addBookToLibrary = function() {
     let rmBtn = document.createElement('div');
     rmBtn.className = 'rmBtn';
     rmBtn.innerText = 'x';
-    rmBtn.setAttribute('remove', 'id');
+    rmBtn.setAttribute('data-btnattr', tr.dataset.uniqueid);
     tr.appendChild(rmBtn);
 
     table.appendChild(tr);
