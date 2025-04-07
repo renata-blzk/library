@@ -25,6 +25,7 @@ tr {
     padding: 10px;
     align-items: center;
     box-shadow: 0px 0px 5px grey;
+    position: relative;
 }
 
 .addNewBook {
@@ -108,4 +109,21 @@ input:hover,
 
 .submitBtn:hover {
     background-color: rgb(220, 167, 167);
+}
+
+.rmBtn {
+    border: solid 1px black;
+    max-width: max-content;
+    padding: 1px 5px;
+    font-size: 12px;
+    position: absolute;
+    bottom: 5px;
+    right: 15px;
+    background-color: lightsalmon;
+}
+
+.rmBtn:hover {
+    color: pink;
+    background-color:purple;
+    border-color: pink;
 }

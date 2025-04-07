@@ -47,7 +47,17 @@ Book.prototype.addBookToLibrary = function() {
     statusTd.innerText = `Status: ${this.status}`;
     tr.appendChild(statusTd); 
     
+    let rmBtn = document.createElement('div');
+    rmBtn.className = 'rmBtn';
+    rmBtn.innerText = 'x';
+    rmBtn.setAttribute('remove', 'id');
+    tr.appendChild(rmBtn);
+
     table.appendChild(tr);
+
+    rmBtn.addEventListener('click', () => {
+        tr.style.display = 'none';
+    });
 }
 
 // CREATE FEW BOOKS FOR DISPLAY
