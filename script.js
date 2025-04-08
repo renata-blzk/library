@@ -48,6 +48,7 @@ Book.prototype.addBookToLibrary = function() {
     statusTd.innerText = `Status: ${this.status}`;
     tr.appendChild(statusTd); 
     
+    // ADD 'X' BUTTON THAT SHOULD DELETE BOOK FROM DISPLAY
     let rmBtn = document.createElement('div');
     rmBtn.className = 'rmBtn';
     rmBtn.innerText = 'x';
@@ -56,8 +57,15 @@ Book.prototype.addBookToLibrary = function() {
 
     table.appendChild(tr);
 
+    // ADD FUNCTION TO 'X' BUTTON TO DELETE BOOK FROM DISPLAY 
     rmBtn.addEventListener('click', () => {
         tr.style.display = 'none';
+
+        // FIND BOOK IN ARRAY WITH SAME ID AS 'X' BUTTON AND REMOVE IT 
+        let found = myLibrary.find((book) => book.id === rmBtn.dataset.btnattr);
+        myLibrary.splice((myLibrary.indexOf(found)), 1);
+        console.log(myLibrary);
+
     });
 }
 
