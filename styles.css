@@ -127,3 +127,8 @@ input:hover,
     background-color:purple;
     border-color: pink;
 }
+
+.toggleBtn {
+    width: 30px;
+    background-color: violet;
+}

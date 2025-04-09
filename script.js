@@ -65,7 +65,13 @@ Book.prototype.addBookToLibrary = function() {
         let found = myLibrary.find((book) => book.id === rmBtn.dataset.btnattr);
         myLibrary.splice((myLibrary.indexOf(found)), 1);
         console.log(myLibrary);
+    });
+}
 
+// try to add toggle function to change status
+Book.prototype.toggleStatus = function() {
+    this.addEventListener('click', () => {
+        color = 'blue';
     });
 }
 
@@ -97,6 +103,8 @@ document.querySelector('.mainForm').addEventListener('submit', function(event) {
             
     // ADD BOOK TO ARRAY
     book.addBookToLibrary();
+
+    book.toggleStatus();
 
     // RESET AND CLOSE THE FORM
     this.reset();
