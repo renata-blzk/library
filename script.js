@@ -59,7 +59,7 @@ Book.prototype.addBookToLibrary = function() {
 
     // ADD FUNCTION TO 'X' BUTTON TO DELETE BOOK FROM DISPLAY 
     rmBtn.addEventListener('click', () => {
-        tr.style.display = 'none';
+        tr.remove();
 
         // FIND BOOK IN ARRAY WITH SAME ID AS 'X' BUTTON AND REMOVE IT 
         let found = myLibrary.find((book) => book.id === rmBtn.dataset.btnattr);
