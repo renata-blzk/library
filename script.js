@@ -18,20 +18,25 @@ function Book(title, author, pages, status) {
 }
 
 Book.prototype.addBookToLibrary = function() {
+    this.id = crypto.randomUUID();
     let newBook = {
         title: this.title,
         author: this.author,
         pages: this.pages,
         status: this.status,
-        id: crypto.randomUUID(),
+        id: this.id,
     }
 
     myLibrary.push(newBook);
-    
-    // DISPLAY BOOKS IN A TABLE
+}
+
+// DISPLAY BOOKS IN A TABLE
+Book.prototype.displayBooksTable = function() {
+    console.log(this);
     let tr = document.createElement('tr');
-    tr.setAttribute('data-uniqueid', newBook.id);
-   
+    tr.setAttribute('data-uniqueid', this.id);
+    console.log(tr.dataset.uniqueid);
+
     let titleTd = document.createElement('td');
     titleTd.innerText = `Title: ${this.title}`;
     tr.appendChild(titleTd); 
@@ -47,13 +52,14 @@ Book.prototype.addBookToLibrary = function() {
     let statusTd = document.createElement('td');
     statusTd.innerText = `Status: ${this.status}`;
     tr.appendChild(statusTd); 
-    
+
     // ADD 'X' BUTTON THAT SHOULD DELETE BOOK FROM DISPLAY
     let rmBtn = document.createElement('div');
     rmBtn.className = 'rmBtn';
     rmBtn.innerText = 'x';
     rmBtn.setAttribute('data-btnattr', tr.dataset.uniqueid);
     tr.appendChild(rmBtn);
+    console.log(rmBtn.dataset.btnattr);
 
     table.appendChild(tr);
 
@@ -63,15 +69,9 @@ Book.prototype.addBookToLibrary = function() {
 
         // FIND BOOK IN ARRAY WITH SAME ID AS 'X' BUTTON AND REMOVE IT 
         let found = myLibrary.find((book) => book.id === rmBtn.dataset.btnattr);
+        console.log(found);
         myLibrary.splice((myLibrary.indexOf(found)), 1);
         console.log(myLibrary);
-    });
-}
-
-// try to add toggle function to change status
-Book.prototype.toggleStatus = function() {
-    this.addEventListener('click', () => {
-        color = 'blue';
     });
 }
 
@@ -83,6 +83,9 @@ const book3 = new Book('Lord of the Rings', 'J.R.R. Tolkien', '500', 'Read');
 book1.addBookToLibrary();
 book2.addBookToLibrary();
 book3.addBookToLibrary();
+book1.displayBooksTable();
+book2.displayBooksTable();
+book3.displayBooksTable();
 
 // OPEN TABLE IN A MODAL TO ADD NEW BOOK
 addNewBookBtn.addEventListener('click', () => {
@@ -103,8 +106,7 @@ document.querySelector('.mainForm').addEventListener('submit', function(event) {
             
     // ADD BOOK TO ARRAY
     book.addBookToLibrary();
-
-    book.toggleStatus();
+    book.displayBooksTable();
 
     // RESET AND CLOSE THE FORM
     this.reset();
