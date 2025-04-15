@@ -5,7 +5,6 @@ const formModal = document.querySelector('.formModal');
 const outputBox = document.querySelector('output');
 const submitBtn = formModal.querySelector('.submitBtn');
 const table = document.querySelector('#tableID');
-const toggleButton = document.querySelectorAll('.toggleBtn');
 
 // CREATE OBJECT CONSTRUCTOR FOR BOOKS DISPLAY
 function Book(title, author, pages, status) {
@@ -30,6 +29,20 @@ Book.prototype.addBookToLibrary = function() {
 
     myLibrary.push(newBook);
 }
+
+Book.prototype.toggleStatus = function() {
+    let toggleButton = document.querySelectorAll('.toggleBtn');
+
+    console.log(this.title);
+    console.log(this.status);
+    console.log(this.id);
+
+    toggleButton.forEach((button) => {
+        if (button.innerText === 'Read') {
+            button.innerText = 'Unread';
+        };
+    });
+};
 
 // DISPLAY BOOKS IN A TABLE
 Book.prototype.displayBooksTable = function() {
