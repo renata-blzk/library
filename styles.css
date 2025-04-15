@@ -129,6 +129,10 @@ input:hover,
 }
 
 .toggleBtn {
-    width: 30px;
+    width: 60px;
     background-color: violet;
+}
+
+.toggleBtn:hover {
+    background-color: yellow;
 }

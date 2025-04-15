@@ -5,6 +5,7 @@ const formModal = document.querySelector('.formModal');
 const outputBox = document.querySelector('output');
 const submitBtn = formModal.querySelector('.submitBtn');
 const table = document.querySelector('#tableID');
+const toggleButton = document.querySelectorAll('.toggleBtn');
 
 // CREATE OBJECT CONSTRUCTOR FOR BOOKS DISPLAY
 function Book(title, author, pages, status) {
@@ -32,7 +33,6 @@ Book.prototype.addBookToLibrary = function() {
 
 // DISPLAY BOOKS IN A TABLE
 Book.prototype.displayBooksTable = function() {
-    console.log(this);
     let tr = document.createElement('tr');
     tr.setAttribute('data-uniqueid', this.id);
     console.log(tr.dataset.uniqueid);
@@ -50,8 +50,16 @@ Book.prototype.displayBooksTable = function() {
     tr.appendChild(pagesTd); 
 
     let statusTd = document.createElement('td');
-    statusTd.innerText = `Status: ${this.status}`;
+    let statusBtn = document.createElement('button');
+    statusBtn.innerText = `${this.status}`;
+    statusBtn.className = 'toggleBtn';
+    statusBtn.setAttribute('data-statusbtn', this.status);
+    statusTd.appendChild(statusBtn);
     tr.appendChild(statusTd); 
+
+    statusBtn.addEventListener('click', () => {
+        this.toggleStatus();
+    });
 
     // ADD 'X' BUTTON THAT SHOULD DELETE BOOK FROM DISPLAY
     let rmBtn = document.createElement('div');
