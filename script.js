@@ -30,25 +30,26 @@ Book.prototype.addBookToLibrary = function() {
     myLibrary.push(newBook);
 }
 
-Book.prototype.toggleStatus = function() {
-    let toggleButton = document.querySelectorAll('.toggleBtn');
+// FUNCTION TO CHANGE STATUS ON CLICK BOTH IN DISPLAY AND ARRAY
+Book.prototype.toggleStatus = function(event) {
+    let bookID = event.target.dataset.idbtn;
 
-    console.log(this.title);
-    console.log(this.status);
-    console.log(this.id);
-
-    toggleButton.forEach((button) => {
-        if (button.innerText === 'Read') {
-            button.innerText = 'Unread';
-        };
-    });
+    let toggleFound = myLibrary.find((book) => book.id === bookID);
+    console.log(toggleFound);
+    if (toggleFound.status === 'Read') {
+        toggleFound.status = 'Unread';
+        event.target.innerText = 'Unread';
+    } else {
+        toggleFound.status = 'Read';
+        event.target.innerText = 'Read';
+    };
+    console.log(myLibrary);
 };
 
 // DISPLAY BOOKS IN A TABLE
 Book.prototype.displayBooksTable = function() {
     let tr = document.createElement('tr');
     tr.setAttribute('data-uniqueid', this.id);
-    console.log(tr.dataset.uniqueid);
 
     let titleTd = document.createElement('td');
     titleTd.innerText = `Title: ${this.title}`;
@@ -62,16 +63,19 @@ Book.prototype.displayBooksTable = function() {
     pagesTd.innerText = `Pages: ${this.pages}`;
     tr.appendChild(pagesTd); 
 
+    // STATUS DISPLAYED IN A BUTTON SO IT CAN BE CLICKED AND CHANGED
     let statusTd = document.createElement('td');
     let statusBtn = document.createElement('button');
     statusBtn.innerText = `${this.status}`;
     statusBtn.className = 'toggleBtn';
     statusBtn.setAttribute('data-statusbtn', this.status);
+    statusBtn.setAttribute('data-idbtn', this.id);
     statusTd.appendChild(statusBtn);
     tr.appendChild(statusTd); 
 
-    statusBtn.addEventListener('click', () => {
-        this.toggleStatus();
+    // CLICK EVENT TO CHANGE STATUS WITH TOGGLE FUCTION  
+    statusBtn.addEventListener('click', (event) => {
+        this.toggleStatus(event);
     });
 
     // ADD 'X' BUTTON THAT SHOULD DELETE BOOK FROM DISPLAY
@@ -80,7 +84,6 @@ Book.prototype.displayBooksTable = function() {
     rmBtn.innerText = 'x';
     rmBtn.setAttribute('data-btnattr', tr.dataset.uniqueid);
     tr.appendChild(rmBtn);
-    console.log(rmBtn.dataset.btnattr);
 
     table.appendChild(tr);
 
