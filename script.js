@@ -52,15 +52,18 @@ Book.prototype.displayBooksTable = function() {
     tr.setAttribute('data-uniqueid', this.id);
 
     let titleTd = document.createElement('td');
-    titleTd.innerText = `Title: ${this.title}`;
+    titleTd.innerText = `${this.title}`;
+    titleTd.className = 'textTitle';
     tr.appendChild(titleTd); 
 
     let authorTd = document.createElement('td');
-    authorTd.innerText = `Author: ${this.author}`;
+    authorTd.innerText = `${this.author}`;
+    authorTd.className = 'textAuthor';
     tr.appendChild(authorTd); 
 
     let pagesTd = document.createElement('td');
-    pagesTd.innerText = `Pages: ${this.pages}`;
+    pagesTd.innerText = `${this.pages}`;
+    pagesTd.className = 'textPages';
     tr.appendChild(pagesTd); 
 
     // STATUS DISPLAYED IN A BUTTON SO IT CAN BE CLICKED AND CHANGED
