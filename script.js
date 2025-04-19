@@ -46,6 +46,7 @@ Book.prototype.toggleStatus = function(event) {
     console.log(myLibrary);
 };
 
+
 // DISPLAY BOOKS IN A TABLE
 Book.prototype.displayBooksTable = function() {
     let tr = document.createElement('tr');
@@ -79,6 +80,7 @@ Book.prototype.displayBooksTable = function() {
     // CLICK EVENT TO CHANGE STATUS WITH TOGGLE FUCTION  
     statusBtn.addEventListener('click', (event) => {
         this.toggleStatus(event);
+        changeColor();
     });
 
     // ADD 'X' BUTTON THAT SHOULD DELETE BOOK FROM DISPLAY
@@ -100,6 +102,21 @@ Book.prototype.displayBooksTable = function() {
         myLibrary.splice((myLibrary.indexOf(found)), 1);
         console.log(myLibrary);
     });
+
+    // CHANGE STATUS BUTTON COLOR 
+    let colorChange = document.querySelectorAll('.toggleBtn');
+
+    function changeColor() {
+        colorChange.forEach((item) => {
+        if (item.innerText === 'Read') {
+            item.style.backgroundColor = '#88E788';
+        } else {
+            item.style.backgroundColor = '#FF746C';
+        }
+        });
+    };
+
+    changeColor();
 }
 
 // CREATE FEW BOOKS FOR DISPLAY
@@ -139,6 +156,11 @@ document.querySelector('.mainForm').addEventListener('submit', function(event) {
     this.reset();
     formModal.close();
 });
+
+
+
+
+
 
 
 

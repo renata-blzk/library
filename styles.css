@@ -134,12 +134,11 @@ input:hover,
     height: 23px;
     border-radius: 5px;
     border: solid 1px grey;
-    background-color: plum;
     color: rgb(19, 16, 19);
 }
 
-.toggleBtn:hover {
-    background-color: peachpuff;
+.toggleBtn:hover{
+    background-color: peachpuff !important;
 }
 
 .textTitle,
